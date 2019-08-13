@@ -2,13 +2,14 @@ package br.com.bot.service.impl;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.bot.converter.MessageConverter;
-import br.com.bot.domain.Message;
-import br.com.bot.json.MessageJson;
+import br.com.bot.converter.MessageRequestConverter;
+import br.com.bot.converter.MessageResponseConverter;
+import br.com.bot.converter.MessageResponseListConverter;
+import br.com.bot.json.MessageRequestJson;
+import br.com.bot.json.MessageResponseJson;
 import br.com.bot.repository.MessageRepository;
 import br.com.bot.service.MessageService;
 
@@ -19,18 +20,24 @@ public class MessageServiceImpl implements MessageService {
 	private MessageRepository messageRepository;
 
 	@Autowired
-	private MessageConverter messageConverter;
-	
-	public Message createMessage(MessageJson messageJson) {
-		return messageRepository.save(messageConverter.convert(messageJson));
+	private MessageRequestConverter messageRequestConverter;
+
+	@Autowired
+	private MessageResponseConverter messageResponseConverter;
+
+	@Autowired
+	private MessageResponseListConverter messageResponseListConverter;
+
+	public MessageResponseJson createMessage(MessageRequestJson messageJson) {
+		return messageResponseConverter.convert(messageRepository.save(messageRequestConverter.convert(messageJson)));
 	}
 
-	public Message getMessageId(ObjectId id) {
-		return messageRepository.findMessageById(id); 
+	public MessageResponseJson getMessageId(String id) {
+		return messageResponseConverter.convert(messageRepository.findMessageById(id));
 	}
 
-	public List<Message> getListMessage(Long conversationId) {
-		return messageRepository.findMessagesByConversationId(conversationId);
+	public List<MessageResponseJson> getListMessage(String conversationId) {
+		return messageResponseListConverter.convert(messageRepository.findMessagesByConversationId(conversationId));
 	}
 
 }

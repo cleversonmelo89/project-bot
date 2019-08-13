@@ -2,7 +2,6 @@ package br.com.bot.controller;
 
 import javax.validation.Valid;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bot.domain.Bot;
 import br.com.bot.json.BotJson;
 import br.com.bot.service.BotService;
 
@@ -25,12 +23,12 @@ public class BotController {
 	private BotService botService;
 
 	@PostMapping
-	public ResponseEntity<Bot> createBot(@Valid @RequestBody BotJson botJson) {
+	public ResponseEntity<BotJson> createBot(@Valid @RequestBody BotJson botJson) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(botService.createBot(botJson));
 	}
 
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Bot> getBotId(@PathVariable("id") ObjectId id) {
+	public ResponseEntity<BotJson> getBotId(@PathVariable("id") String id) {
 		return ResponseEntity.status(HttpStatus.OK).body(botService.getBotId(id));
 	}
 

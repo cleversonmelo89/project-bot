@@ -2,17 +2,15 @@ package br.com.bot.service;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
-
-import br.com.bot.domain.Message;
-import br.com.bot.json.MessageJson;
+import br.com.bot.json.MessageRequestJson;
+import br.com.bot.json.MessageResponseJson;
 
 public interface MessageService {
 	
-	Message createMessage(MessageJson messageJson);
+	MessageResponseJson createMessage(MessageRequestJson messageJson);
 	
-	Message getMessageId(ObjectId id);
+	MessageResponseJson getMessageId(String id);
 	
-	List<Message> getListMessage(Long conversationId);
+	List<MessageResponseJson> getListMessage(String conversationId);
 
 }

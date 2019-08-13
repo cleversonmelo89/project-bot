@@ -1,7 +1,5 @@
 package br.com.bot.domain;
 
-import javax.persistence.Entity;
-
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,16 +7,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Entity
 @Document(collection = "bots")
 public class Bot {
 
 	@Id
-	private ObjectId id;
+	private ObjectId _id;
+	
+	private String id;
 
 	private String name;
 }
