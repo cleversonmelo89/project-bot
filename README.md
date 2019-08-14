@@ -1,6 +1,6 @@
 # Project-Bot
 
-Para este projeto é necessário utilizar o banco de dado MongoDB para que seja possivel criar o usuario no bot e gerenciar as mensagens.
+Para este projeto é necessário utilizar o banco de dados MongoDB para que seja possivel criar o usuario no bot e gerenciar as mensagens.
 
 # Versões utilizadas
 Java "1.8.0_201"<br>
