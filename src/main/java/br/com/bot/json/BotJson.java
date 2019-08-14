@@ -3,10 +3,14 @@ package br.com.bot.json;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BotJson {
 
 	@NotNull(message = "O id não poder ser nulo")

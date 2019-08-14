@@ -16,7 +16,7 @@ import br.com.bot.json.BotJson;
 import br.com.bot.service.BotService;
 
 @RestController
-@RequestMapping("/bot")
+@RequestMapping("/bots")
 public class BotController {
 
 	@Autowired

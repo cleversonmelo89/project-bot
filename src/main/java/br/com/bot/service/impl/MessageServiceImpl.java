@@ -44,9 +44,10 @@ public class MessageServiceImpl implements MessageService {
 			botService.getBotId(messageJson.getFrom());
 			botService.getBotId(messageJson.getTo());
 		} catch (ResponseStatusException rse) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
 					MessageFormat.format(resourceBundle.getString("message_not_sending"), rse.getReason()));
 		}
+
 		return messageResponseConverter.convert(messageRepository.save(messageRequestConverter.convert(messageJson)));
 	}
 
@@ -61,7 +62,7 @@ public class MessageServiceImpl implements MessageService {
 
 	public List<MessageResponseJson> getListMessage(String conversationId) {
 		List<Message> listMessage = messageRepository.findMessagesByConversationId(conversationId);
-		if(listMessage.isEmpty()) {
+		if (listMessage.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
 					MessageFormat.format(resourceBundle.getString("conversation_not_found"), conversationId));
 		}

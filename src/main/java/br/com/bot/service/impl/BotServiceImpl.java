@@ -35,6 +35,7 @@ public class BotServiceImpl implements BotService {
 			throw new ResponseStatusException(HttpStatus.CONFLICT,
 					MessageFormat.format(resourceBundle.getString("id_user_already_exists"), botJson.getId()));
 		}
+
 		return botResponseConverter.convert(botRepository.save(botConverter.convert(botJson)));
 	}
 
